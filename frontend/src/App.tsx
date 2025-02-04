@@ -43,8 +43,8 @@ function App() {
           onClick={() => window.location.reload()}
           className="text-2xl font-bold text-white drop-shadow-lg hover:opacity-80 transition-opacity flex items-center gap-2"
         >
-          <img src={logo} alt="WikiTok Logo" className="h-8 w-8" />
-          WikiTok
+          <img src={logo} alt="WikiScroll Logo" className="h-8 w-8" />
+          WikiScroll
         </button>
       </div>
 

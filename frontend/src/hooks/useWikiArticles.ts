@@ -55,7 +55,7 @@ export function useWikiArticles() {
           thumbnail: page.thumbnail,
         }))
         .filter((article) => article.thumbnail);
-
+        
       await Promise.allSettled(
         newArticles
           .filter((article) => article.thumbnail)
