@@ -3,6 +3,7 @@ import { WikiCard } from './components/WikiCard'
 import { useWikiArticles } from './hooks/useWikiArticles'
 import { Loader2 } from 'lucide-react'
 import { Analytics } from "@vercel/analytics/react"
+import logo from './assets/ᜊ  ֙ 𝖠𝗌𝗍𝖺 — 🎴.jpeg' 
 
 function App() {
   const [showAbout, setShowAbout] = useState(false)
@@ -40,8 +41,9 @@ function App() {
       <div className="fixed top-4 left-4 z-50">
         <button
           onClick={() => window.location.reload()}
-          className="text-2xl font-bold text-white drop-shadow-lg hover:opacity-80 transition-opacity"
+          className="text-2xl font-bold text-white drop-shadow-lg hover:opacity-80 transition-opacity flex items-center gap-2"
         >
+          <img src={logo} alt="WikiTok Logo" className="h-8 w-8" />
           WikiTok
         </button>
       </div>
@@ -64,32 +66,22 @@ function App() {
             >
               ✕
             </button>
-            <h2 className="text-xl font-bold mb-4">About WikiTok</h2>
+            <h2 className="text-xl font-bold mb-4">About WikiScroll</h2>
             <p className="mb-4">
               A TikTok-style interface for exploring random Wikipedia articles.
             </p>
             <p className="text-white/70">
               Made with ❤️ by{' '}
               <a
-                href="https://x.com/Aizkmusic"
+                href="https://www.linkedin.com/in/nigel-chimwene-911535202/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:underline"
               >
-                @Aizkmusic
+                Nigel
               </a>
             </p>
-            <p className="text-white/70 mt-2">
-              Check out the code on{' '}
-              <a
-                href="https://github.com/IsaacGemal/wikitok"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:underline"
-              >
-                GitHub
-              </a>
-            </p>
+            
           </div>
         </div>
       )}
