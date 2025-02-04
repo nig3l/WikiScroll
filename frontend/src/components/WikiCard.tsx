@@ -13,9 +13,11 @@ interface WikiArticle {
 
 interface WikiCardProps {
     article: WikiArticle;
+    onShowRelated?: () => void;
+    compact?: boolean;
 }
 
-export function WikiCard({ article }: WikiCardProps) {
+export function WikiCard({ article, onShowRelated, compact }: WikiCardProps) {
     const [imageLoaded, setImageLoaded] = useState(false);
     const [articleContent, setArticleContent] = useState<string | null>(null);
 
@@ -67,7 +69,7 @@ export function WikiCard({ article }: WikiCardProps) {
     };
 
     return (
-        <div className="h-screen w-full flex items-center justify-center snap-start relative">
+        <div className={`relative ${compact ? 'h-48' : 'h-screen'} snap-start`}>
             <div className="h-full w-full relative">
                 {article.thumbnail ? (
                     <div className="absolute inset-0">
@@ -125,6 +127,14 @@ export function WikiCard({ article }: WikiCardProps) {
                     </a>
                 </div>
             </div>
+            {onShowRelated && (
+                <button
+                    onClick={onShowRelated}
+                    className="absolute bottom-4 right-4 px-4 py-2 bg-white/10 rounded-full hover:bg-white/20"
+                >
+                    Show Related
+                </button>
+            )}
         </div>
     );
-} 
+}
