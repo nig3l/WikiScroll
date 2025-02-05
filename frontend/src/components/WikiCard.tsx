@@ -82,7 +82,7 @@ export function WikiCard({ article, onShowRelated, compact }: WikiCardProps) {
                             onLoad={() => setImageLoaded(true)}
                             onError={(e) => {
                                 console.error('Image failed to load:', e);
-                                setImageLoaded(true); // Show content even if image fails
+                                setImageLoaded(true); 
                             }}
                         />
                         {!imageLoaded && (
@@ -93,7 +93,7 @@ export function WikiCard({ article, onShowRelated, compact }: WikiCardProps) {
                 ) : (
                     <div className="absolute inset-0 bg-gray-900" />
                 )}
-                {/* Content container with z-index to ensure it's above the image */}
+                
                 <div className="absolute bottom-[10vh] left-0 right-0 p-6 text-white z-10">
                     <div className="flex justify-between items-start mb-3">
                         <a
