@@ -20,6 +20,7 @@ function App() {
   const observerTarget = useRef(null)
   const [showControls, setShowControls] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [showRelated, setShowRelated] = useState(false);
 
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
@@ -74,10 +75,17 @@ function App() {
     }
   }
 
+  const handleShowRelated = (pageId: number) => {
+    fetchRelatedArticles(pageId);
+    setShowRelated(true);
+  };
+
   const displayArticles = searchTerm ? searchResults : articles
 
   return (
-    <div className="h-screen w-full bg-black text-white overflow-y-scroll snap-y snap-mandatory">
+    <div className={`h-screen w-full bg-black text-white overflow-y-scroll snap-y snap-mandatory ${
+      showRelated ? 'pb-72' : ''
+    }`}>
       <div className={`fixed top-4 left-4 right-4 z-50 transition-transform duration-300 ${
         showControls ? 'translate-y-0' : '-translate-y-full sm:translate-y-0'
       }`}>
@@ -153,14 +161,22 @@ function App() {
         <WikiCard 
           key={article.pageid} 
           article={article} 
-          onShowRelated={() => fetchRelatedArticles(article.pageid)}
+          onShowRelated={() => handleShowRelated(article.pageid)}
         />
       ))}
 
-      {relatedArticles.length > 0 && (
-        <div className="fixed bottom-4 left-4 right-4 bg-gray-900 p-4 rounded-lg">
-          <h3 className="text-lg font-bold mb-2">Related Articles</h3>
-          <div className="flex gap-4 overflow-x-auto">
+      {showRelated && relatedArticles.length > 0 && (
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur-sm p-4 rounded-t-lg shadow-lg z-40">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-lg font-bold">Related Articles</h3>
+            <button
+              onClick={() => setShowRelated(false)}
+              className="p-2 hover:bg-gray-800 rounded-full transition-colors"
+            >
+              ✕
+            </button>
+          </div>
+          <div className="flex gap-4 overflow-x-auto pb-2">
             {relatedArticles.map((article) => (
               <div key={article.pageid} className="flex-shrink-0 w-64">
                 <WikiCard article={article} compact />
